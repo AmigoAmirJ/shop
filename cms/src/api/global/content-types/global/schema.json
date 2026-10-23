@@ -16,20 +16,31 @@
       "type": "string",
       "required": true
     },
-    "favicon": {
+    "tagline": {
+      "type": "string"
+    },
+    "logo": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
     },
-    "siteDescription": {
-      "type": "text",
-      "required": true
+    "footerText": {
+      "type": "string"
     },
-    "defaultSeo": {
+    "navLinks": {
       "type": "component",
-      "repeatable": false,
-      "component": "shared.seo"
+      "component": "shared.nav-links",
+      "repeatable": true
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "shared.nav-links",
+      "repeatable": true
     }
   }
 }
