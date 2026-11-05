@@ -24,6 +24,7 @@ const FALLBACK: SiteSettings = {
   navLinks: [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
+    { label: "About", href: "/about" },
   ],
   socialLinks: [],
 };

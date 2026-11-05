@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "Product",
+    "description": "Manage store products"
   },
   "options": {
     "draftAndPublish": true
@@ -12,20 +13,31 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
       "type": "string"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
     },
     "image": {
       "type": "media",
       "multiple": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images"]
     },
-    "price": {
-      "type": "biginteger"
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "badge": {
+      "type": "string"
     }
   }
 }

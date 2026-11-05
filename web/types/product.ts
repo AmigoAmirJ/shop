@@ -1,10 +1,17 @@
+export type ProductImage = {
+  id: number;
+  url: string;
+  alternativeText?: string | null;
+};
+
 export type Product = {
   id: number;
   documentId: string;
   title: string;
-  slug: string;
-  price: number;
-  description?: string;
+  description?: string | null;
+  category?: string | null;
+  price: number | string;
+  image?: ProductImage[] | null;
   featured?: boolean;
-  cover?: { url: string; alternativeText?: string } | null;
+  badge?: string | null;
 };

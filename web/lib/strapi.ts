@@ -1,16 +1,33 @@
-const URL = process.env.STRAPI_URL!;
-const TOKEN = process.env.STRAPI_API_TOKEN;
+const STRAPI_URL =
+  process.env.STRAPI_URL || "http://localhost:1337";
 
-export async function strapi(path: string, init: RequestInit = {}) {
-  const res = await fetch(`${URL}/api${path}`, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...(TOKEN && { Authorization: `Bearer ${TOKEN}` }),
-      ...init.headers,
+export function mediaUrl(url?: string | null) {
+  if (!url) return null;
+
+  if (url.startsWith("http")) return url;
+
+  return `${STRAPI_URL}${url}`;
+}
+
+export async function strapi(path: string) {
+  const token = process.env.STRAPI_API_TOKEN;
+
+  const response = await fetch(`${STRAPI_URL}/api${path}`, {
+    headers: token
+      ? {
+          Authorization: `Bearer ${token}`,
+        }
+      : {},
+    next: {
+      revalidate: 60,
     },
-    next: { revalidate: 60 },
   });
-  if (!res.ok) throw new Error(`Strapi ${res.status} on ${path}`);
-  return res.json();
+
+  if (!response.ok) {
+    throw new Error(
+      `Strapi request failed: ${response.status}`
+    );
+  }
+
+  return response.json();
 }
