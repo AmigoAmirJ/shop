@@ -27,6 +27,7 @@ export type Product = {
   title: string;
   slug: string;
   price: number;
+  shortDescription?: string | null;
   description?: string | RichNode[] | null;
   featured?: boolean;
   cover?: Media | null;
