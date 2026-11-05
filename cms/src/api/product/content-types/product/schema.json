@@ -14,7 +14,30 @@
     "title": {
       "type": "string"
     },
-    "image": {
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "gallery": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
@@ -24,8 +47,13 @@
         "audios"
       ]
     },
-    "price": {
-      "type": "biginteger"
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "featured": {
+      "type": "boolean"
     }
   }
 }

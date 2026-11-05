@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import { mediaUrl } from "@/lib/site";
+import { formatPrice } from "@/lib/products";
 import type { Product } from "@/types/product";
 
 export default function ProductCard({ product, index }: { product: Product; index: number }) {
@@ -44,7 +45,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
         </div>
         <div className="p-5">
           <h3 className="font-medium">{product.title}</h3>
-          <p className="mt-1 text-muted">${product.price}</p>
+          <p className="mt-1 text-muted">{formatPrice(product.price)}</p>
         </div>
       </Link>
     </motion.div>
