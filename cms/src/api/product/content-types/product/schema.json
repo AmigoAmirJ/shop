@@ -16,21 +16,40 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "text"
-    },
-    "category": {
-      "type": "string"
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     },
     "price": {
       "type": "decimal",
       "required": true,
       "min": 0
     },
+    "shortDescription": {
+      "type": "text"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "files", "videos", "audios"]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images", "files", "videos", "audios"]
+    },
     "image": {
       "type": "media",
       "multiple": true,
       "allowedTypes": ["images"]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
     },
     "featured": {
       "type": "boolean",

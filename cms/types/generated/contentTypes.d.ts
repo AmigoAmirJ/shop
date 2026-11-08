@@ -663,12 +663,17 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
   attributes: {
     badge: Schema.Attribute.String;
-    category: Schema.Attribute.String;
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    description: Schema.Attribute.Blocks;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    gallery: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     image: Schema.Attribute.Media<'images', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -685,6 +690,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         number
       >;
     publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
